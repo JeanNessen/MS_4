@@ -17,22 +17,38 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    int width = 500;
-    int height = 500;
-    int pixelWidth = width/50;
-    int pixleHeigth = height/50;
+
+    int standartWidth = 500;
+    int standartHeight = 500;
+    int width = standartWidth;
+    int height = standartHeight;
     int pixelSize = 50;
+    int pixelWidth = width/pixelSize;
+    int pixleHeigth = height/pixelSize;
+
     std::vector<QPoint> full;
-    float pixelValues[10][10];
+    float pixelValues[100][100];
 
 
 
 private:
+    QColor lGray = QColor(193,193,193);
+    QColor mGray = QColor(117,117,117);
+    QColor dGray = QColor(69,69,69);
+
+    void clear();
     Ui::MainWindow *ui;
     QPoint calcField(QPoint point);
 protected:
     void paintEvent(QPaintEvent *e);
     virtual void mousePressEvent(QMouseEvent *);
+    virtual void mouseMoveEvent(QMouseEvent *);
+private slots:
+
+
+    void on_pixelSlider_valueChanged(int value);
+    void on_pushButton_2_clicked();
+    void on_clearButton_clicked();
 };
 
 #endif // MAINWINDOW_H
