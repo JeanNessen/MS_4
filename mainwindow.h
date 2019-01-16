@@ -18,13 +18,12 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    int standartWidth = 500;
-    int standartHeight = 500;
-    int width = standartWidth;
-    int height = standartHeight;
+
+    int width = slider_width;
+    int height = slider_height;
     int pixelSize = 50;
     int pixelWidth = width/pixelSize;
-    int pixleHeigth = height/pixelSize;
+    int pixelHeigth = height/pixelSize;
 
     std::vector<QPoint> full;
     float pixelValues[100][100];
@@ -35,6 +34,9 @@ private:
     QColor lGray = QColor(193,193,193);
     QColor mGray = QColor(117,117,117);
     QColor dGray = QColor(69,69,69);
+
+    int slider_width = 500;
+    int slider_height = 500;
 
     void clear();
     Ui::MainWindow *ui;
@@ -49,6 +51,9 @@ private slots:
     void on_pixelSlider_valueChanged(int value);
     void on_pushButton_2_clicked();
     void on_clearButton_clicked();
+    void on_Width_slider_valueChanged(int value);
+    void on_height_slider_valueChanged(int value);
+    void on_apply_width_heigthbutton_clicked();
 };
 
 #endif // MAINWINDOW_H

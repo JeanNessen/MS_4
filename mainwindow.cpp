@@ -22,7 +22,7 @@ MainWindow::~MainWindow()
 void MainWindow::paintEvent(QPaintEvent *e){
     QPainter painter(this);
 
-    QPen lines(Qt::black);
+    QPen lines(Qt::gray);
     lines.setWidth(1);
     QPen all(Qt::white);
     all.setWidth(1);
@@ -49,7 +49,7 @@ void MainWindow::paintEvent(QPaintEvent *e){
     }
 
     for(int i = 0; i < pixelWidth; i++){
-        for (int j = 0;j < pixleHeigth; j++){
+        for (int j = 0;j < pixelHeigth; j++){
             if (pixelValues[i][j] == 0.25){
                 painter.fillRect(i*pixelSize+1,j*pixelSize+1, pixelSize-1, pixelSize-1, QBrush(lGray));
             }
@@ -71,28 +71,31 @@ void MainWindow::paintEvent(QPaintEvent *e){
 
 }
 
-void MainWindow::mousePressEvent(QMouseEvent *event){ //wenn man auf das widget clicked werden die koordinaten dem vector hinzugefügt und update() wird aufgerufen.
-//    QPoint testPoint;
-//    testPoint = event->pos();
-//    QPoint pixelCoord = calcField(testPoint);
-//    pixelValues[pixelCoord.x()][pixelCoord.y()] = 1;
-//    if (pixelValues[pixelCoord.x()][pixelCoord.y()-1] < 1){
-//        pixelValues[pixelCoord.x()][pixelCoord.y()-1] = pixelValues[pixelCoord.x()][pixelCoord.y()-1] + 0.25;
-//    }
-//    if (pixelValues[pixelCoord.x()][pixelCoord.y()+1] < 1){
-//        pixelValues[pixelCoord.x()][pixelCoord.y()+1] = pixelValues[pixelCoord.x()][pixelCoord.y()+1] + 0.25;
-//    }
-//    if (pixelValues[pixelCoord.x()-1][pixelCoord.y()] < 1){
-//        pixelValues[pixelCoord.x()-1][pixelCoord.y()] = pixelValues[pixelCoord.x()-1][pixelCoord.y()] + 0.25;
-//    }
-//    if (pixelValues[pixelCoord.x()+1][pixelCoord.y()] < 1){
-//        pixelValues[pixelCoord.x()+1][pixelCoord.y()] = pixelValues[pixelCoord.x()+1][pixelCoord.y()] + 0.25;
-//    }
-//    pixelValues[pixelCoord.x()][pixelCoord.y()] = 1;
+void MainWindow::mousePressEvent(QMouseEvent *event){
+    QPoint testPoint;
+    testPoint = event->pos();
+    QPoint pixelCoord = calcField(testPoint);
+    pixelValues[pixelCoord.x()][pixelCoord.y()] = 1;
+    if (pixelValues[pixelCoord.x()][pixelCoord.y()-1] < 1){
+        pixelValues[pixelCoord.x()][pixelCoord.y()-1] = pixelValues[pixelCoord.x()][pixelCoord.y()-1] + 0.25;
+    }
+    if (pixelValues[pixelCoord.x()][pixelCoord.y()+1] < 1){
+        pixelValues[pixelCoord.x()][pixelCoord.y()+1] = pixelValues[pixelCoord.x()][pixelCoord.y()+1] + 0.25;
+    }
+    if (pixelValues[pixelCoord.x()-1][pixelCoord.y()] < 1){
+        pixelValues[pixelCoord.x()-1][pixelCoord.y()] = pixelValues[pixelCoord.x()-1][pixelCoord.y()] + 0.25;
+    }
+    if (pixelValues[pixelCoord.x()+1][pixelCoord.y()] < 1){
+        pixelValues[pixelCoord.x()+1][pixelCoord.y()] = pixelValues[pixelCoord.x()+1][pixelCoord.y()] + 0.25;
+    }
+    else {
+        update();
+    }
+    pixelValues[pixelCoord.x()][pixelCoord.y()] = 1;
 
-//    full.push_back(pixelCoord);
+    full.push_back(pixelCoord);
 
-//    update(); //Alles wird erneuert um die neu gesetzte Stadt anzuzeigen.
+    update();
 
 }
 
@@ -117,7 +120,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event){
 
     full.push_back(pixelCoord);
 
-    update(); //Alles wird erneuert um die neu gesetzte Stadt anzuzeigen.
+    update();
 }
 
 QPoint MainWindow::calcField(QPoint point){
@@ -137,7 +140,7 @@ QPoint MainWindow::calcField(QPoint point){
 
 void MainWindow::on_pixelSlider_valueChanged(int value)
 {
-    ui->pixelSizeLabel->setText(QString::number(ui->pixelSlider->value()));
+    ui->pixelSizeLabel->setText(QString::number(value));
 
 }
 
@@ -145,13 +148,15 @@ void MainWindow::on_pixelSlider_valueChanged(int value)
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    width = standartWidth;
-    height = standartHeight;
+    width = slider_width;
+    height = slider_height;
     pixelSize = ui->pixelSlider->value();
     pixelWidth = width/pixelSize;
-    pixleHeigth = height/pixelSize;
+    pixelHeigth = height/pixelSize;
     width = (width / pixelSize) * pixelSize;
     height = (height / pixelSize) * pixelSize;
+    ui->height_value_label->setText(QString::number(height));
+    ui->width_value_label->setText(QString::number(width));
     qDebug() << width;
     clear();
     update();
@@ -165,8 +170,34 @@ void MainWindow::on_clearButton_clicked()
 
 void MainWindow::clear(){
     for(int i = 0; i < pixelWidth; i++){
-        for (int j = 0;j < pixleHeigth; j++){
+        for (int j = 0;j < pixelHeigth; j++){
             pixelValues[i][j] = 0.0;
         }
     }
+}
+
+void MainWindow::on_Width_slider_valueChanged(int value)
+{
+    ui->width_value_label->setText(QString::number(value));
+    slider_width = value;
+}
+
+void MainWindow::on_height_slider_valueChanged(int value)
+{
+    ui->height_value_label->setText(QString::number(value));
+    slider_height = value;
+}
+
+void MainWindow::on_apply_width_heigthbutton_clicked()
+{
+    width = slider_width;
+    height = slider_height;
+    pixelWidth = width/pixelSize;
+    pixelHeigth = height/pixelSize;
+    width = (width / pixelSize) * pixelSize;
+    height = (height / pixelSize) * pixelSize;
+    ui->height_value_label->setText(QString::number(height));
+    ui->width_value_label->setText(QString::number(width));
+    clear();
+    update();
 }

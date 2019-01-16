@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     for(int i = 0; i < w.pixelWidth; i++){
-        for (int j = 0;j < w.pixleHeigth; j++){
+        for (int j = 0;j < w.pixelHeigth; j++){
             w.pixelValues[i][j] = 0.0;
         }
     }
