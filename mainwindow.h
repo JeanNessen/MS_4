@@ -54,6 +54,7 @@ private slots:
     void on_Width_slider_valueChanged(int value);
     void on_height_slider_valueChanged(int value);
     void on_apply_width_heigthbutton_clicked();
+    void on_defaultButton_clicked();
 };
 
 #endif // MAINWINDOW_H

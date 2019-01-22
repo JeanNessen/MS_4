@@ -201,3 +201,20 @@ void MainWindow::on_apply_width_heigthbutton_clicked()
     clear();
     update();
 }
+
+void MainWindow::on_defaultButton_clicked()
+{
+    slider_width = 750;
+    slider_height = 750;
+    pixelSize = slider_height/28;
+    width = slider_width;
+    height = slider_height;
+    pixelWidth = width/pixelSize;
+    pixelHeigth = height/pixelSize;
+    width = (width / pixelSize) * pixelSize;
+    height = (height / pixelSize) * pixelSize;
+    ui->height_value_label->setText(QString::number(height));
+    ui->width_value_label->setText(QString::number(width));
+    clear();
+    update();
+}
