@@ -29,7 +29,10 @@ SOURCES += \
         mainwindow.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    loadbinaries.h \
+    Net.h \
+    Neuron.h
 
 FORMS += \
         mainwindow.ui
