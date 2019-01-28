@@ -1,5 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#include "loadbinaries.h"
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -18,7 +19,6 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-
     int width = slider_width;
     int height = slider_height;
     int pixelSize = 50;
@@ -28,7 +28,7 @@ public:
     std::vector<QPoint> full;
     float pixelValues[100][100];
 
-
+    LoadBinaries *load = new LoadBinaries();
 
 private:
     QColor lGray = QColor(193,193,193);
@@ -56,5 +56,7 @@ private slots:
     void on_apply_width_heigthbutton_clicked();
     void on_defaultButton_clicked();
 };
+
+
 
 #endif // MAINWINDOW_H

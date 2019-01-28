@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    //load = new LoadBinaries();
     ui->setupUi(this);
 }
 

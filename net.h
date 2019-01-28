@@ -1,3 +1,6 @@
+#ifndef NET_H
+#define NET_H
+
 #include <stdlib.h>
 #include <vector>
 #include <math.h>
@@ -8,7 +11,7 @@
 
 #include <QDebug>
 
-#include "Neuron.h"
+#include "neuron.h"
 
 class Net
 {
@@ -241,3 +244,4 @@ inline void Net::print_all_results() const {
 // load data from binary file
 //
 
+#endif

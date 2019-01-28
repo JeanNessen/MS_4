@@ -1,3 +1,6 @@
+#ifndef NEURON_H
+#define NEURON_H
+
 #include <stdlib.h>
 #include <vector>
 #include <math.h>
@@ -114,3 +117,4 @@ inline void Neuron::get_neuron_weights(std::vector <double> &neuron_weights)
   }
 }
 
+#endif

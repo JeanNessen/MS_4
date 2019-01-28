@@ -1,6 +1,6 @@
 #ifndef LOADBINARIES_H
 #define LOADBINARIES_H
-#include "Net.h"
+#include "net.h"
 
 
 /**
@@ -103,7 +103,7 @@ private:
     int _cols;
 };
 
-void LoadBinaries::load_labels(string filename) {
+inline void LoadBinaries::load_labels(string filename) {
     labels.clear();
 
     ifstream data (filename, ios::binary);
@@ -139,7 +139,7 @@ void LoadBinaries::load_labels(string filename) {
  * If intel processor then flip bytes
  * because intel uses little endian format.
  */
-uns_char** LoadBinaries::load_images(string filename, int& set_size, int& img_size) {
+inline uns_char** LoadBinaries::load_images(string filename, int& set_size, int& img_size) {
 
     ifstream bin_data(filename, ios::binary);
 

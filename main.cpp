@@ -1,28 +1,35 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include "loadbinaries.h"
+
 int main(int argc, char *argv[])
 {
 
     /* INCLUDED */
+    // 2 b)
     const vector <size_t> top = {784, 64, 10};
     Net *neuralNet = new Net(top);
     vector <double> result;
     /* load binary data */
-    LoadBinaries *load = new LoadBinaries();
 
     int num_data = 60000;
     int img_size = 28*28;
 
-    uns_char** pp_imgs = load->load_images("images.bin", num_data, img_size);
-    load->load_labels("images.labels");
+    QApplication a(argc, argv);
+    MainWindow w;
+
+    //LoadBinaries *load = new LoadBinaries();
+
+
+    uns_char** pp_imgs = w.load->load_images("images.bin", num_data, img_size);
+    w.load->load_labels("images.labels");
     vector <double> inp;
 
-    load->print_label(0);
-    load->print_image(0);
+    w.load->print_label(0);
+    w.load->print_image(0);
 
-    load->print_label(1);
-    load->print_image(2);
+    w.load->print_label(1);
+    w.load->print_image(1);
 
 //    neuralNet->analize(inp);
 //    neuralNet->print_weights("weights.txt");
@@ -34,8 +41,6 @@ int main(int argc, char *argv[])
 //    neuralNet->analize(inp);
 //    neuralNet->print_all_results();
 
-    QApplication a(argc, argv);
-    MainWindow w;
     for(int i = 0; i < w.pixelWidth; i++){
         for (int j = 0;j < w.pixelHeigth; j++){
             w.pixelValues[i][j] = 0.0;

@@ -31,8 +31,8 @@ SOURCES += \
 HEADERS += \
         mainwindow.h \
     loadbinaries.h \
-    Net.h \
-    Neuron.h
+    net.h \
+    neuron.h
 
 FORMS += \
         mainwindow.ui
