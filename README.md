@@ -18,3 +18,9 @@ Aufgabe 1:
   d)Es gibt einen Button "clear" mit welchem die Zeichenfläche geleert wird.
   
   
+Aufgabe 2:
+  a) Das Laden der .bin und .labels Dateien funktioniert einwandfrei.
+     Sie werden auch richtig interpretiert und die Pixelwerte als integer zwischen [0, 255] gespeichert
+     und lassen sich in der Konsole auch korrekt printen.
+  b) Instanziierung des neuronalen Netzes mit der gegebenen Topologie wurde ebenfalls erstellt
+     und erster Versuch des Trainings. Klappt aber noch nicht korrekt.
