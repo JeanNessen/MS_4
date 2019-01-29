@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
 //    neuralNet->analize(inp);
 //    neuralNet->print_all_results();
 
+    //Beim ersten aufrufen des Programmes soll das Array mit nullen gefüllt sein.
     for(int i = 0; i < w.pixelWidth; i++){
         for (int j = 0;j < w.pixelHeigth; j++){
             w.pixelValues[i][j] = 0.0;

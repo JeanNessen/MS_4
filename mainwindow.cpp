@@ -23,6 +23,7 @@ MainWindow::~MainWindow()
 void MainWindow::paintEvent(QPaintEvent *e){
     QPainter painter(this);
 
+    //Es werden die verschiedenen Pens definiert, tatsächlich wird hiervor jedoch nur einer im Programm verwendet.
     QPen lines(Qt::gray);
     lines.setWidth(1);
     QPen all(Qt::white);
@@ -37,7 +38,7 @@ void MainWindow::paintEvent(QPaintEvent *e){
     elasticlinespen.setWidth(1);
 
 
-
+    //Die Zeichenfläche wird mit dem weißen Hintergrund gefüllt.
     painter.setPen(all);
     painter.fillRect(0,0,width, height, QBrush(Qt::white));
 
@@ -103,6 +104,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event){
+    //Hier geschieht das selbe wie schon in mousePressEvent
     QPoint testPoint;
     testPoint = event->pos();
     QPoint pixelCoord = calcField(testPoint);
@@ -219,7 +221,7 @@ void MainWindow::on_apply_width_heigthbutton_clicked()
 }
 
 void MainWindow::on_defaultButton_clicked()
-//Um ein 28x28
+//Um eine 28x28 Pixel große Zeichenflöche zu erstellen wird hier ähnlich wie bei den Slidern die Größe der Zeichenfläche so geändert, dass sie maximale Größe und 28x28 Pixel hat.
 {
     slider_width = 750;
     slider_height = 750;
