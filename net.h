@@ -1,3 +1,8 @@
+//////////////////////////////////////////////////////////////////
+/// author: Musterlösung + David ( /* INCLUDED */ )
+/// Überall wo /* INCLUDED */ drüber steht, wurde von uns selbst
+/// gecodet und eingefügt.
+//////////////////////////////////////////////////////////////////
 #ifndef NET_H
 #define NET_H
 
@@ -8,11 +13,12 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-
 #include <QDebug>
-
 #include "neuron.h"
 
+/**
+ * @brief The Net class
+ */
 class Net
 {
 public:
@@ -194,7 +200,7 @@ inline void Net::print_weights(std::string filename)
 
 /* INCLUDED */
 //
-//
+// stores result values in result_values vector
 //
 inline void Net::get_layer_results(std::vector <double> &result_values, size_t i) const {
     result_values.clear();
@@ -238,10 +244,5 @@ inline void Net::print_all_results() const {
     }
     std::cout << "########################" << "\r\n";
 }
-
-/* INCLUDED */
-//
-// load data from binary file
-//
 
 #endif

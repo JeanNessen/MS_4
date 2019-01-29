@@ -1,3 +1,15 @@
+//////////////////////////////////////////////////////////////////
+/// author: David
+///
+/// Die LoadBinaries Klasse dient zum Import und zur Interpretation
+/// der .bin und .labels Dateien.
+/// - - -  - - -  - - -  - - -  - - -  - - -  - - -  - - -  - - -
+/// Benutze die load_labels und load_images mit einer Instanz
+/// dieser Klasse und lege vorher die .bin .labels Dateien in den
+/// Build Ordner des Projektes. Ansonsten auch mal in den Projekt-
+/// ordner. Das hängt davon ab, wo dein Qt nach der Datei sucht.
+//////////////////////////////////////////////////////////////////
+
 #ifndef LOADBINARIES_H
 #define LOADBINARIES_H
 #include "net.h"
@@ -80,6 +92,16 @@ public:
     ~LoadBinaries(){ }
 
     /* --- SUPPORT FUNCTIONS --- */
+
+    /**
+     * @brief flip
+     * @param i
+     * @return
+     *
+     * If you use an intel processor then the bytes
+     * has to be flipped because Intel uses little endian
+     * and the data is stored in big endian format.
+     */
     int flip (int i) {
         uns_char ch_1, ch_2, ch_3, ch_4;
         ch_1 = i & 255;
@@ -122,23 +144,11 @@ inline void LoadBinaries::load_labels(string filename) {
             data.read((char*) &temp, sizeof (temp));
             labels.push_back((int)temp);
         }
-
     } else {
         throw runtime_error("error while opening file `" + filename + "`!");
     }
 }
 
-
-/**
- * @brief LoadBinaries::read_img
- * @param filename
- * @param set_size
- * @param img_size
- * @return
- *
- * If intel processor then flip bytes
- * because intel uses little endian format.
- */
 inline uns_char** LoadBinaries::load_images(string filename, int& set_size, int& img_size) {
 
     ifstream bin_data(filename, ios::binary);
